@@ -1,0 +1,60 @@
+html.
+head.
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/../routes/index.js"></script>
+script.
+	$(document).ready(function() {
+
+		$('#btnOK').click(function(){
+
+			var my_name = $('#name').val();
+			var my_age = $('#age').val();
+			var my_height = $('#height').val();
+			var my_weight = $('#weight').val();
+			var my_school = $('#school').val();
+			var my_work = $('#work').val();
+
+			$.post('/db', {
+							name: my_name,
+							age: my_age,
+							height: my_height,
+							weight: my_weight,
+							school: my_school,
+							work: my_work
+			});
+
+		});  	
+
+		$('#btn').click(function(){
+
+			$.get('/db', function(data){
+
+				$('#result')
+					.html(data);
+
+			});
+
+		});
+
+	});
+
+body.
+
+<h1>WELCOME</h1>
+
+div.
+	Name : <input type='text' id='name' name='name'></br>
+	Age : <input type='text' id='age' name='age'></br>
+	Height : <input type='text' id='height' name='height'></br>
+	Weight : <input type='text' id='weight' name='weight'></br>
+	School : <input type='text' id='school' name='school'></br>
+	Work : <input type='text' id='work' name='work'></br>
+	<button id='btnOK' value='Update'>Update</button>
+	<button id='btn'>Retrieve</button>
+
+</br><div id="result">lets see the database!</div>
+
+
+
+
+
